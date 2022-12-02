@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div id="login">
+            <h1>LA STORE DE KAREN</h1>
+            <div class="mb-3">
+                <label for="exampleInputUsuario" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="usuario" aria-describedby="usuarioHelp">
+                <div id="usuarioHelp" class="form-text">Nunca compartiremos tus datos</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="contrasena">
+            </div>
+            <button class="btn btn-danger" onclick="entrar()">Entrar</button>
+
+        </div>
+        <div id="menu">
+            <div>
+                <h1>Productos Keren</h1>
+                <button class="btn btn-danger" type="button" onclick="productos()">Productos</button>
+                <button class="btn btn-danger" type="button" onclick="clientes()">Clientes</button>
+                <button class="btn btn-danger" type="button" onclick="vendedores()">Vendedores</button>
+                <button class="btn btn-danger" type="button" onclick="facturas()">Facturas</button>
+               
+            </div>
+
+        </div>
+
+        <div id="productos">
+            <h1>Anexar Productos</h1>
+            <div class="mb-3">
+                <label for="exampleInputNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="Nombre" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Captura el nombre del producto</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputNombre" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="Cantidad" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Captura cuantas unidades tienes del producto</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputNombre" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="Precio" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Captura en cuanto lo vas a vender</div>
+            </div>
+            <button class="btn btn-danger" onclick="guardarp()">Guardar</button>
+            <button class="btn btn-danger" onclick="regresar()">Regresar</button>
+            <div id="listap"></div>
+        </div>
+
+        <div id="clientes">
+            <h1>Anexar Clientes</h1>
+            <div class="mb-3">
+                <label for="exampleInputNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombrec" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Captura el nombre del cliente</div>
+            </div>
+            <button class="btn btn-danger" onclick="guardarc()">Guardar</button>
+            <button class="btn btn-danger" onclick="regresarc()">Regresar</button>
+            <div id="listac"></div>
+        </div>
+
+        <div id="vendedores">
+            <h1>Anexar Vendedores</h1>
+            <div class="mb-3">
+                <label for="exampleInputNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombrev" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Captura el nombre del vendedor</div>
+            </div>
+            <button class="btn btn-danger" onclick="guardarv()">Guardar</button>
+            <button class="btn btn-danger" onclick="regresarv()">Regresar</button>
+            <div id="listav"></div>
+        </div>
+
+        <div id="facturas">
+            <h1>Anexar Factura</h1>
+            <div class="mb-3">
+                <label for="exampleInputNombre" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="fecha" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Captura la fecha de la factura</div>
+            </div>
+            <p>Seleccione un cliente</p>
+            <div id="sclientes"></div>
+
+            <p>Seleccione un vendedor</p>
+            <div id="svendedores"></div>
+
+            <p>Seleccione un producto</p>
+            <div id="sproductos"></div>
+
+            <div class="mb-3">
+                <label for="exampleInputNombre" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="cantidadp" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Captura la cantidad de producto</div>
+            </div>
+            <p></p>
+            <button class="btn btn-danger" onclick="guardarf()">Guardar</button>
+            <button class="btn btn-danger" onclick="regresarf()">Regresar</button>
+            <div id="listaf"></div>
+        </div>
+
+    </div>
+    <script>
+        const login = document.getElementById("login")
+        const menu = document.getElementById("menu")
+        const vproductos = document.getElementById("productos")
+        const vclientes = document.getElementById("clientes")
+        const vvendedores = document.getElementById("vendedores")
+        const vfacturas = document.getElementById("facturas")
+
+        menu.style.display = "none"
+        vproductos.style.display = "none"
+        vclientes.style.display = "none"
+        vvendedores.style.display = "none"
+        vfacturas.style.display = "none"
+
+        async function guardarp() {
+            const Nombre = document.getElementById("Nombre")
+            const Cantidad = document.getElementById("Cantidad")
+            const Precio = document.getElementById("Precio")
+            if (!!Nombre.value && !!Cantidad.value && !!Precio.value) {
+                const uri = "http://localhost:3000/agregarproducto?nombre=" + Nombre.value + "&cantidad=" + Cantidad.value + "&precio=" + Precio.value
+                const resultado = await fetch(uri)
+                const datos = await resultado.json()
+                if (datos === "error")
+                    alert("Erro al guardar!!")
+                regresar()
+            } else {
+                alert("Error al capturar el producto!")
+
+            }
+
+        }
+
+        async function guardarc() {
+            const nombrec = document.getElementById("nombrec")
+
+            if (!!nombrec.value) {
+                const uri = "http://localhost:3000/agregarcliente?nombre=" + nombrec.value
+                const resultado = await fetch(uri)
+                const datos = await resultado.json()
+                if (datos === "error")
+                    alert("Erro al guardar!!")
+                regresarc()
+            } else {
+                alert("Error al capturar el cliente!!")
+
+            }
+
+        }
+
+        async function guardarv() {
+            const nombrev = document.getElementById("nombrev")
+
+            if (!!nombrev.value) {
+                const uri = "http://localhost:3000/agregarvendedor?nombre=" + nombrev.value
+                const resultado = await fetch(uri)
+                const datos = await resultado.json()
+                if (datos === "error")
+                    alert("Erro al guardar!!")
+                regresarv()
+            } else {
+                alert("Error al capturar el vendedor!!")
+
+            }
+
+        }
+
+        async function guardarf() {
+            const fecha = document.getElementById("fecha")
+            const clienteid = document.getElementById("clienteid")
+            const vendedorid = document.getElementById("vendedorid")
+            alert(clienteid.value + "  " + vendedorid.value)
+
+        }
+
+        function regresar() {
+
+            vproductos.style.display = "none"
+            menu.style.display = "block"
+        }
+
+        function regresarc() {
+
+            vclientes.style.display = "none"
+            menu.style.display = "block"
+        }
+
+        function regresarv() {
+
+            vvendedores.style.display = "none"
+            menu.style.display = "block"
+        }
+
+        function regresarf() {
+
+            vfacturas.style.display = "none"
+            menu.style.display = "block"
+        }
+
+        async function productos() {
+            menu.style.display = "none"
+            vproductos.style.display = "block"
+            const Nombre = document.getElementById("Nombre")
+            const Cantidad = document.getElementById("Cantidad")
+            const Precio = document.getElementById("Precio")
+            const listap = document.getElementById("listap")
+            Nombre.value = ""
+            Cantidad.value = 0
+            Precio.value = 0
+            const resultado = await fetch("http://localhost:3000/productos")
+            const datos = await resultado.json()
+
+            const lproductos = datos
+
+            let s = '<ol class="list-group list-group-numbered">'
+            for (x of lproductos) {
+                s += `<li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">${x.nombre}</div>
+      ${x.precio}
+    </div>
+    <span class="badge bg-primary rounded-pill">${x.cantidad}</span>
+  </li>`
+
+            }
+            s += "</ol>"
+
+            listap.innerHTML = s
+        }
+
+        //Inicia Clientes
+        async function clientes() {
+            menu.style.display = "none"
+            vclientes.style.display = "block"
+            const Nombre = document.getElementById("nombrec")
+            const listac = document.getElementById("listac")
+            Nombre.value = ""
+            const resultado = await fetch("http://localhost:3000/clientes")
+            const datos = await resultado.json()
+
+            const lclientes = datos
+
+            let s = '<ol class="list-group list-group-numbered">'
+            for (x of lclientes) {
+                s += `<li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">${x.nombre}</div>
+    </div>
+  </li>`
+
+            }
+            s += "</ol>"
+
+            listac.innerHTML = s
+        }
+
+        //Inicia Vendedores
+        async function vendedores() {
+            menu.style.display = "none"
+            vvendedores.style.display = "block"
+            const Nombre = document.getElementById("nombrev")
+            const listav = document.getElementById("listav")
+            Nombre.value = ""
+            const resultado = await fetch("http://localhost:3000/vendedores")
+            const datos = await resultado.json()
+
+            const lvendedores = datos
+
+            let s = '<ol class="list-group list-group-numbered">'
+            for (x of lvendedores) {
+                s += `<li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">${x.nombre}</div>
+    </div>
+  </li>`
+
+            }
+            s += "</ol>"
+
+            listav.innerHTML = s
+        }
+
+
+        //Inicia Facturas
+        async function facturas() {
+            menu.style.display = "none"
+            vfacturas.style.display = "block"
+            const fecha = document.getElementById("fecha")
+            const listaf = document.getElementById("listaf")
+            const sclientes = document.getElementById("sclientes")
+            const svendedores = document.getElementById("svendedores")
+                //const sproductos = document.getElementById("sproductos")
+
+            const resultadoc = await fetch("http://localhost:3000/clientes")
+            const datosc = await resultadoc.json()
+            alert(JSON.stringify(datosc))
+            const resultadov = await fetch("http://localhost:3000/vendedores")
+            const datosv = await resultadov.json()
+            alert(JSON.stringify(datosv))
+
+            const resultadop = await fetch("http://localhost:3000/productos")
+            const datosp = await resultadop.json()
+
+            alert(JSON.stringify(datosp))
+            let listac = '<select class="form-select" aria-label="Default select example" id="clienteid">'
+            for (x of datosc) {
+                listac += `<option value="${x.id}">${x.nombre}</option>`
+            }
+
+            listac += '</select>'
+
+            sclientes.innerHTML = listac
+
+            let listav = '<select class="form-select" aria-label="Default select example" id="vendedorid">'
+            for (x of datosv) {
+                listav += `<option value="${x.id}">${x.nombre}</option>`
+            }
+
+            listav += '</select>'
+
+            svendedores.innerHTML = listav
+
+            fecha.value = ""
+            const resultado = await fetch("http://localhost:3000/facturas")
+            const datos = await resultado.json()
+
+            const lfacturas = datos
+
+            let s = '<ol class="list-group list-group-numbered">'
+            for (x of lfacturas) {
+                s += `<li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">${x.fecha}</div>
+    </div>
+  </li>`
+
+            }
+            s += "</ol>"
+
+            listaf.innerHTML = s
+        }
+        async function entrar() {
+            const usuario = document.getElementById("usuario")
+            const contrasena = document.getElementById("contrasena")
+            if (!!usuario.value && !!contrasena.value) {
+                const resultado = await fetch("http://localhost:3000/login?nombre=" + usuario.value + "&contrasena=" + contrasena.value)
+                const datos = await resultado.json()
+                    //alert(JSON.stringify(datos))
+                if (datos.length > 0) {
+                    login.style.display = "none"
+                    menu.style.display = "block"
+                } else {
+                    alert("Usuario no encontrado!!s")
+                }
+            } else {
+                alert("No hay datos de entrada!!")
+            }
+        }
+        let ProductosF=document.getElementById('ProductosF');
+        prodF.addEventListener('click',()=>{
+  	    let productos=document.getElementById('productos');
+        let idProd=document.getElementById('selProd');
+        let cant=document.getElementById('cant').value;
+        let producto=`<div><p>${idProd.value} - ${cant}</p></div>`
+        prods.innerHTML+=producto;
+        productosF.push({idProducto:idProd.value,cant:cant})
+        console.log(productosF);
+  });
+
+
+
+    </script>
+</body>
+
+</html>
