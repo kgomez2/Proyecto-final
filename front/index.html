@@ -13,7 +13,7 @@
 <body>
     <div class="container mt-5">
         <div id="login">
-            <h1>LA STORE DE KAREN</h1>
+            <h1>LA STORE DE KAREN</h1> <script>//primera parte</script>
             <div class="mb-3">
                 <label for="exampleInputUsuario" class="form-label">Usuario</label>
                 <input type="text" class="form-control" id="usuario" aria-describedby="usuarioHelp">
@@ -136,10 +136,10 @@
                 const resultado = await fetch(uri)
                 const datos = await resultado.json()
                 if (datos === "error")
-                    alert("Erro al guardar!!")
+                    alert("Error")
                 regresar()
             } else {
-                alert("Error al capturar el producto!")
+                alert("Error de producto!")
 
             }
 
@@ -153,10 +153,10 @@
                 const resultado = await fetch(uri)
                 const datos = await resultado.json()
                 if (datos === "error")
-                    alert("Erro al guardar!!")
+                    //alert("Error")
                 regresarc()
             } else {
-                alert("Error al capturar el cliente!!")
+                //alert("Error al cliente!!")
 
             }
 
@@ -170,10 +170,10 @@
                 const resultado = await fetch(uri)
                 const datos = await resultado.json()
                 if (datos === "error")
-                    alert("Erro al guardar!!")
+                    //alert("Erro al guardar!!")
                 regresarv()
             } else {
-                alert("Error al capturar el vendedor!!")
+                //alert("Error al vendedor!!")
 
             }
 
@@ -193,7 +193,7 @@
             menu.style.display = "block"
         }
 
-        function regresarc() {
+        function regresark() {
 
             vclientes.style.display = "none"
             menu.style.display = "block"
@@ -242,7 +242,7 @@
             listap.innerHTML = s
         }
 
-        //Inicia Clientes
+        //Clie
         async function clientes() {
             menu.style.display = "none"
             vclientes.style.display = "block"
@@ -268,7 +268,7 @@
             listac.innerHTML = s
         }
 
-        //Inicia Vendedores
+        //Vend
         async function vendedores() {
             menu.style.display = "none"
             vvendedores.style.display = "block"
@@ -295,7 +295,7 @@
         }
 
 
-        //Inicia Facturas
+        //Fac
         async function facturas() {
             menu.style.display = "none"
             vfacturas.style.display = "block"
@@ -303,7 +303,6 @@
             const listaf = document.getElementById("listaf")
             const sclientes = document.getElementById("sclientes")
             const svendedores = document.getElementById("svendedores")
-                //const sproductos = document.getElementById("sproductos")
 
             const resultadoc = await fetch("http://localhost:3000/clientes")
             const datosc = await resultadoc.json()
@@ -359,15 +358,15 @@
             if (!!usuario.value && !!contrasena.value) {
                 const resultado = await fetch("http://localhost:3000/login?nombre=" + usuario.value + "&contrasena=" + contrasena.value)
                 const datos = await resultado.json()
-                    //alert(JSON.stringify(datos))
                 if (datos.length > 0) {
                     login.style.display = "none"
                     menu.style.display = "block"
                 } else {
-                    alert("Usuario no encontrado!!s")
+                    alert("Usuario no")
+                    //pongo alert para ver si me corre bien 
                 }
             } else {
-                alert("No hay datos de entrada!!")
+                alert("No hay datos")
             }
         }
         let ProductosF=document.getElementById('ProductosF');

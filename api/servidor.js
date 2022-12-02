@@ -56,7 +56,6 @@ app.get('/agregarproducto', async(req, res) => {
         res.json(estatus)
     }
 });
-
 app.get('/editarproducto', async(req, res) => {
     const nombre = req.query.nombre
     const id = req.query.id
@@ -71,7 +70,7 @@ app.get('/eliminarproducto', async(req, res) => {
     const [result] = await pool.query(`DELETE FROM producto WHERE id=${id}`)
     res.json(result[0])
 });
-////inicia clientes
+
 app.get('/agregarcliente', async(req, res) => {
     const nombre = req.query.nombre
     try {
@@ -83,7 +82,6 @@ app.get('/agregarcliente', async(req, res) => {
         res.json(estatus)
     }
 });
-
 app.get('/editarcliente', async(req, res) => {
     const nombre = req.query.nombre
     const id = req.query.id
@@ -96,7 +94,6 @@ app.get('/eliminarcliente', async(req, res) => {
     const [result] = await pool.query(`DELETE FROM cliente WHERE id=${id}`)
     res.json(result[0])
 });
-//// inicia vendedor 
 app.get('/agregarvendedor', async(req, res) => {
     const nombre = req.query.nombre
     try {
@@ -108,20 +105,18 @@ app.get('/agregarvendedor', async(req, res) => {
         res.json(estatus)
     }
 });
-
 app.get('/editarvendedor', async(req, res) => {
     const nombre = req.query.nombre
     const id = req.query.id
     const [result] = await pool.query(`UPDATE vendedor SET nombre='${nombre}' WHERE id=${id}`)
     res.json(result[0])
 });
-
 app.get('/eliminarvendedor', async(req, res) => {
     const id = req.query.id
     const [result] = await pool.query(`DELETE FROM vendedor WHERE id=${id}`)
     res.json(result[0])
 });
-//// factura
+
 app.get('/agregarfactura', async(req, res) => {
     const fecha = req.query.fecha
     const idcliente = req.query.idcliente
@@ -129,7 +124,6 @@ app.get('/agregarfactura', async(req, res) => {
     const nofactura = result.insertId
     res.json(nofactura)
 });
-//// facturdetalle
 app.get('/agregarfacturdetalle', async(req, res) => {
     const idproducto = req.query.idproducto
     const cantidad = req.query.cantidad
@@ -140,7 +134,6 @@ app.get('/agregarfacturdetalle', async(req, res) => {
     res.json(result[0])
 });
 
-
 app.listen(3000, () => {
-    console.log("El servidor está inicializado en el puerto 3000");
+    console.log("El servidor inicio 3000");
 });
